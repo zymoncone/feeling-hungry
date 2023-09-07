@@ -48,7 +48,6 @@ h3 {
   margin-top: 1vh;
 }
 
-
 #entry {
   border: solid 0.5px;
   background-color: burlywood;
@@ -60,7 +59,6 @@ h3 {
   box-shadow: rgba(95, 65, 0, 0.4) 0 4px 5px,
   rgba(95, 65, 0, 0.3) 5px 4px 5px;
 }
-
 
 .input-container {
   width: 100%;
@@ -82,6 +80,7 @@ button {
   border-radius: 5px;
   padding: 10px;
   margin: 0px;
+  cursor: pointer;
 }
 
 #output {
