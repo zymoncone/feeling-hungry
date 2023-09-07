@@ -83,6 +83,18 @@ button {
   cursor: pointer;
 }
 
+#user-list {
+  width: 100%;
+  max-width: 600px;
+  white-space: pre-wrap;
+  background-color: burlywood;
+  border-radius: 10px;
+  border: solid 0.5px;
+  padding: 10px;
+  margin-bottom: 0;
+  animation: showup .3s forwards;
+}
+
 #output {
   width: 100%;
   max-width: 600px;
@@ -91,4 +103,21 @@ button {
   border-radius: 10px;
   border: solid 0.5px;
   padding: 10px;
+  margin-top: 5px;
+  animation: showup .3s forwards;
+}
+
+#loading {
+  animation: pulse 5s infinite;
+}
+
+@keyframes showup {
+  from {translate: 0 20px; opacity: 0;}
+  to {translate: none; opacity: 1;}
+}
+
+@keyframes pulse {
+  0% {opacity: 0;}
+  100% {opacity: 100;}
+  0% {opacity: 0;}
 }
