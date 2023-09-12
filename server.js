@@ -8,6 +8,7 @@ app.use(cors())
 
 
 const OPENAI_API_KEY = process.env.API_KEY
+const num_of_answers = 2
 
 app.post('/completitions', async (req, res) => {
     const options = {
@@ -18,7 +19,7 @@ app.post('/completitions', async (req, res) => {
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: "What can I make with these ingredients? " + req.body.message + " Give me your top 3 answers."}],
+            messages: [{role: "user", content: "What can I make with these ingredients? " + req.body.message + " Give me your top " + num_of_answers + " answers."}],
             max_tokens: 100,
         })
     }

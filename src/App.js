@@ -17,7 +17,7 @@ function App() {
 
     // clear input to verify click & set user inputed list as from input value
     clearInput()
-    setList("Your list: " + value)
+    setList(value)
     setLoading("Loading...")
 
     const options = {
@@ -34,13 +34,11 @@ function App() {
       const data = await response.json()
       setLoading("")
       setMessage(data.choices[0].message)
-
+      
     } catch (error) {
       console.error(error)
     }
   }
-
-  console.log(message)
 
   return (
     <div className="app">
@@ -48,7 +46,7 @@ function App() {
         <h1>Feeling Hungry?</h1>
         <h4>Just enter below what you have and we'll tell you what you can make!</h4>
         <button onClick={clearInput}>clear chat box</button>
-        {user_list != "" && <p id="user-list">{user_list}</p>}
+        {user_list != "" && <p id="user-list"><b>Your list: </b>{user_list}</p>}
         {loading != "" && <p id="loading">{loading}</p>}
         {message.content != "" && <p id="output">{message.content}</p>}
         <div className="bottom-section">
@@ -62,7 +60,11 @@ function App() {
               </div>
           </div>
         </div>
+        
       </section>
+      <footer>
+          <p>Have suggestions? Message me on <a href="https://www.linkedin.com/in/szymonsarnowicz/">LinkedIn</a></p>
+      </footer>
     </div>
   );
 }
