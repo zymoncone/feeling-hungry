@@ -99,7 +99,7 @@ button {
   background-color: burlywood;
   border-radius: 10px;
   border: solid 0.5px;
-  padding: 10px;
+  padding: 10px 20px;
   margin-bottom: 0;
   animation: showup .3s forwards;
 }
@@ -111,8 +111,9 @@ button {
   background-color: burlywood;
   border-radius: 10px;
   border: solid 0.5px;
-  padding: 10px;
+  padding: 15px 20px;
   margin-top: 5px;
+  text-align: left;
   animation: showup .3s forwards;
 }
 
