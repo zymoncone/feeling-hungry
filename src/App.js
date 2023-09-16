@@ -1,18 +1,18 @@
 import {useState, useEffect} from 'react'
+import styled, { keyframes } from 'styled-components'
+import { Animated } from "react-animated-css";
 
 function App() {
 
   const [value, setValue] = useState("")
-  const [user_list, setList] = useState("")
   const [loading, setLoading] = useState("")
-  const [message, setMessage] = useState({content:''})
+  const [message, setMessage] = useState("")
 
   // clear all inputs to allow for new entries
   const clearInput = () => {
 
     setValue("")
-    setMessage({content:''})
-    setList("")
+    setMessage("")
 
   }
 
@@ -21,7 +21,7 @@ function App() {
 
     // clear input to verify click & set user inputed list as from input value
     clearInput()
-    setList(value)
+    setValue(value)
     setLoading("Loading...")
 
     // load options as per OpenAI API requirements
@@ -41,7 +41,7 @@ function App() {
       const data = await response.json()
       // remove loading display and assign message
       setLoading("")
-      setMessage(data.choices[0].message)
+      setMessage(data.choices[0].message.content)
 
     } catch (error) {
       console.error(error)
@@ -53,19 +53,20 @@ function App() {
     // grab all item titles starting with 1. , 2. , 3. , ... 
     let regexp = /[0-9].\s.*?:/g
     // match all items to regex
-    let matchAll = Array.from(message.content.matchAll(regexp))
+    let matchAll = Array.from(message.matchAll(regexp))
     // split all items by regex. Get opposite array of matchAll from string
-    let splitAll = message.content.split(regexp)
+    let splitAll = message.split(regexp)
     // init splitByTitleArray
     const splitByTitleArray = []
     const searchLinkArray = []
     
     // combine split and match array by regex pattern for mapping
     for (let i=0, len=matchAll.length; i<len; i++) {
-      splitByTitleArray.push(matchAll[i])
+      splitByTitleArray.push(matchAll[i][0])
       splitByTitleArray.push(splitAll[i+1])
-      console.log(matchAll[i])
       const titleSplit = matchAll[i][0].split(" ")
+      
+      // clean-up for url
       for (let j=0; j < titleSplit.length; j++) {
         // get rid of any text with ':'
         titleSplit[j] = titleSplit[j].replace(/(\w+):/g,"$1")
@@ -76,37 +77,42 @@ function App() {
       titleSplit.splice(0, 1) 
       searchLinkArray.push("https://www.google.com/search?q=" + titleSplit.join("+"))
     }
-
+    
     // map array to output, bold titles and give them google links for more info
     return (
-      <span>
+      <div id="output">
         {splitByTitleArray.map((item, index) => (
-          <>
+          <div key={index}>
             {index % 2 === 1 && item}
             {index % 2 === 0 && (
               <a href={searchLinkArray[index/2]} target="_blank" rel="noreferrer">
                 <b>{item}</b>
               </a>
             )}
-          </>
+          </div>
         ))}
-      </span>)
+      </div>)
   }
 
   return (
     <div className="app">
       <section className="main">
-        <h1>Feeling Hungry?</h1>
+        <Animated animationIn="jello">
+          <h1>Feeling Hungry?</h1>
+        </Animated>
         <h4>Just enter below what you have and we'll tell you what you can make!</h4>
-        <button onClick={clearInput}>clear chat box</button>
-        {user_list !== "" && <p id="user-list"><b>Your list: </b>{user_list}</p>}
+        <button onClick={clearInput} style={{backgroundColor:'tomato'}}>clear output</button>
+        {value !== "" && <p id="user-list"><b>Your list: </b>{value}</p>}
         {loading !== "" && <p id="loading">{loading}</p>}
-        {message.content !== "" && <p id="output"><MappedRegex/></p>}
+        {message !== "" && 
+        <Animated animationIn="fadeIn">
+          <MappedRegex />
+        </Animated>}
         <div className="bottom-section">
           <h3>What's in your fridge?</h3>
             <div className="input-container">
 
-              <textarea id="entry" type="text" placeholder="(input as comma separated words)" value={value} onChange={(e) => setValue(e.target.value)}></textarea>
+              <input id="entry" type="text" placeholder="(input as comma separated words)" value={value} onChange={(e) => setValue(e.target.value)} />
               
               <div id="submit" onClick={getMessage}>
                   ➱
