@@ -49,4 +49,8 @@ app.post('/passwords', (req, res) => {
     }
 })
 
+app.get('/', (req, res) => {
+    res.send('Your server is running!')
+  })
+
 app.listen(PORT, () => console.log('Your server is running on Port ' + PORT))
