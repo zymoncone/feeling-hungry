@@ -6,10 +6,12 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-
+// define constants
 const OPENAI_API_KEY = process.env.API_KEY
-const num_of_answers = 2
+const PASSWORD = process.env.PASSWORD
+const num_of_answers = 3
 
+// POST request to OpenAI
 app.post('/completitions', async (req, res) => {
     const options = {
         method: 'POST',
@@ -31,6 +33,17 @@ app.post('/completitions', async (req, res) => {
         // console.log(data)
         res.send(data)
 
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+// POST request to check password match
+app.post('/passwords', (req, res) => {
+    const allowEntry = (req.body.message === PASSWORD)
+    // console.log(req.body)
+    try {
+        res.send(allowEntry)
     } catch (error) {
         console.error(error)
     }
