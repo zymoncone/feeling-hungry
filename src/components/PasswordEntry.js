@@ -18,7 +18,7 @@ const PasswordEntry = (props) => {
 
     try {
       // fetch from server
-      const passwordResponse = (await fetch('http://localhost:8000/passwords', passOptions)).json()
+      const passwordResponse = (await fetch('https://feeling-hungry-server.azurewebsites.net/passwords', passOptions)).json()
       // grab response of password match from Promise and assign to allowEntry
       passwordResponse.then((response) => {props.setAllowEntry(response)})
 

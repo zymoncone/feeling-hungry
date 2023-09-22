@@ -39,7 +39,7 @@ function App() {
     }
     try {
       // fetch from server
-      const response = await fetch('http://localhost:8000/completitions', options)
+      const response = await fetch('https://feeling-hungry-server.azurewebsites.net/completitions', options)
       // get response data
       const data = await response.json()
       // remove loading display and assign message
