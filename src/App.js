@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Animated } from "react-animated-css"
+import {Helmet} from "react-helmet"
 import PasswordEntry from './components/PasswordEntry'
 import DishChoices from './components/DishChoices'
 import UserEntry from './components/UserEntry'
@@ -70,6 +71,9 @@ function App() {
 
   return (
     <div className="app">
+      <Helmet>
+        <link rel="canonical" href="https://zymoncone.github.io/feeling-hungry/" />
+      </Helmet>
       <section className="main">
         <Animated animationIn="jello">
           <h1>Feeling Hungry?</h1>
