@@ -10,8 +10,9 @@ function App() {
   const [value, setValue] = useState("")
   const [loading, setLoading] = useState("")
   const [message, setMessage] = useState("")
-  const [allowEntry, setAllowEntry] = useState(false);
+  const [allowEntry, setAllowEntry] = useState(false)
   const [entryPermission, setEntryPermission] = useState(false)
+  const [showSubmit, setShowSubmit] = useState(false)
   
   // clear all inputs to allow for new entries
   const clearInput = () => {
@@ -22,9 +23,9 @@ function App() {
   // get new message from Node.js backend server fetching from OpenAI API
   const getMessage = async () => {
 
-    // clear input to verify click & set user inputed list as from input value
-    clearInput()
-    setValue(value)
+    // clear message from chatGPT and remove submit and show loading to confirm click
+    setMessage("")
+    setShowSubmit(false)
     setLoading("Loading...")
 
     // load options as per OpenAI API requirements
@@ -58,6 +59,15 @@ function App() {
     }
   },[allowEntry])
 
+  // create effect so anytime value is adjusted submit button shows up
+  useEffect(() => {
+    if (value !== "") {
+      setShowSubmit(true)
+    } else {
+      setShowSubmit(false)
+    }
+  }, [value])
+
   return (
     <div className="app">
       <section className="main">
@@ -66,10 +76,10 @@ function App() {
         </Animated>
         <h4>Just enter below what you have and we'll tell you what you can make!</h4>
         {entryPermission ? (<>
-                              <button onClick={clearInput} style={{backgroundColor:'tomato'}}>clear output</button>
+                              <button className="clear-button" onClick={clearInput}>clear output</button>
                               {value !== "" && <p id="user-list"><b>Your list: </b>{value}</p>}
-                              {message === "" ? <p id="loading">{loading}</p> : <Animated animationIn="fadeIn"><DishChoices message={message}/></Animated>}
-                              <UserEntry value={value} setValue={setValue} getMessage={getMessage} />
+                              {message === "" ? <p id="loading">{loading}</p> : <Animated animationIn='fadeIn'><DishChoices message={message}/></Animated>}
+                              <UserEntry value={value} setValue={setValue} getMessage={getMessage} showSubmit={showSubmit} />
                             </>)
         : <PasswordEntry setEntryPermission={setEntryPermission} allowEntry={allowEntry} setAllowEntry={setAllowEntry}/>}
       </section>

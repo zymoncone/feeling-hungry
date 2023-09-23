@@ -2,14 +2,13 @@ const UserEntry = (props) => {
 
     return (
     <div className="bottom-section">
-        <h3>What's in your fridge?</h3>
-            <div className="input-container">
-
-            <input id="entry" type="text" placeholder="(input as comma separated words)" value={props.value} onChange={(e) => props.setValue(e.target.value)} />
+        <div className="sub-title" style={{alignItems:"left", alignText:"left", width:"100%"}}>
+            <h3>What's in your fridge?</h3>
+        </div>
+        <div className="input-container">
+            <input id="entry" type="text" placeholder="(input as comma separated words)" value={props.value} onChange={(e) => props.setValue(e.target.value)} autoComplete="off" />
             
-            <div id="submit" onClick={props.getMessage}>
-                ➱
-            </div>
+            {props.showSubmit && <button className="submit" onClick={props.getMessage}>submit</button>}
         </div>
     </div>)
 }
