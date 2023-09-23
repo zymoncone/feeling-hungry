@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/feeling-hungry/static/css/main.80efc866.css",
-    "main.js": "/feeling-hungry/static/js/main.f5c82fa9.js",
+    "main.js": "/feeling-hungry/static/js/main.23e23fa3.js",
     "index.html": "/feeling-hungry/index.html",
     "main.80efc866.css.map": "/feeling-hungry/static/css/main.80efc866.css.map",
-    "main.f5c82fa9.js.map": "/feeling-hungry/static/js/main.f5c82fa9.js.map"
+    "main.23e23fa3.js.map": "/feeling-hungry/static/js/main.23e23fa3.js.map"
   },
   "entrypoints": [
     "static/css/main.80efc866.css",
-    "static/js/main.f5c82fa9.js"
+    "static/js/main.23e23fa3.js"
   ]
 }
