@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/feeling-hungry/static/css/main.441ab4ae.css",
-    "main.js": "/feeling-hungry/static/js/main.071f91a7.js",
+    "main.css": "/feeling-hungry/static/css/main.80efc866.css",
+    "main.js": "/feeling-hungry/static/js/main.f5c82fa9.js",
     "index.html": "/feeling-hungry/index.html",
-    "main.441ab4ae.css.map": "/feeling-hungry/static/css/main.441ab4ae.css.map",
-    "main.071f91a7.js.map": "/feeling-hungry/static/js/main.071f91a7.js.map"
+    "main.80efc866.css.map": "/feeling-hungry/static/css/main.80efc866.css.map",
+    "main.f5c82fa9.js.map": "/feeling-hungry/static/js/main.f5c82fa9.js.map"
   },
   "entrypoints": [
-    "static/css/main.441ab4ae.css",
-    "static/js/main.071f91a7.js"
+    "static/css/main.80efc866.css",
+    "static/js/main.f5c82fa9.js"
   ]
 }
